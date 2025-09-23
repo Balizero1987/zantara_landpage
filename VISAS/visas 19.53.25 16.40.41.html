@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visas - 3ALI ZERO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            background: #000;
+            margin: 0;
+            min-height: 100vh;
+            padding: 80px 0 40px;
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.98);
+            padding: 15px;
+            text-align: center;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-header a:hover {
+            opacity: 1;
+        }
+
+        .logo-nav {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .logo-nav .red {
+            color: #ff0000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            margin: 40px 0 30px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+            padding: 0 10px;
+        }
+
+        .service-btn {
+            padding: 15px 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #fff;
+            background: #2563eb;
+            border: 1px solid #1d4ed8;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-btn:hover {
+            background: #1d4ed8;
+            border-color: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.98);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 85%;
+            max-height: 70vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+        }
+
+        .modal p {
+            color: #fff;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .modal h4 {
+            color: #fff;
+            margin: 15px 0 8px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .price-highlight {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            margin: 8px 0;
+            color: #fff;
+            font-weight: 400;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .close:hover {
+            opacity: 1;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2563eb;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            border: 1px solid #1d4ed8;
+            opacity: 0.9;
+        }
+
+        .back-btn:hover {
+            background: #1d4ed8;
+            border-color: #1e40af;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal-content { width: 95%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-header">
+        <div class="logo-nav">
+            <img src="../logo.png" alt="3ALI ZERO" style="height: 30px; width: auto;">
+        </div>
+        <div>
+            <a href="../index.html">HOME</a>
+            <a href="../index.html">SERVICES</a>
+            <a href="../COMPANY&LICENSES/company 19.53.25.html">COMPANY</a>
+            <a href="../TAX/tax 19.53.25.html">TAX</a>
+            <a href="../REAL ESTATE/realestate 19.53.25.html">REAL ESTATE</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container">
+            <h1>VISAS</h1>
+
+            <h2 class="section-title" id="single-entry">SINGLE ENTRY VISAS</h2>
+            <div class="services-grid">
+                <div class="service-btn" onclick="showModal('c1')">C1 Tourism</div>
+                <div class="service-btn" onclick="showModal('c2')">C2 Business</div>
+                <div class="service-btn" onclick="showModal('c7')">C7 Professional</div>
+                <div class="service-btn" onclick="showModal('c7ab')">C7 A&B Music</div>
+                <div class="service-btn" onclick="showModal('c22a')">C22A Academic</div>
+                <div class="service-btn" onclick="showModal('c22b')">C22B Company</div>
+            </div>
+
+            <h2 class="section-title" id="multiple-entry">MULTIPLE ENTRY VISAS</h2>
+            <div class="services-grid">
+                <div class="service-btn" onclick="showModal('d1')">D1 Multiple</div>
+                <div class="service-btn" onclick="showModal('d2')">D2 Business</div>
+                <div class="service-btn" onclick="showModal('d12')">D12 Investment</div>
+            </div>
+
+            <h2 class="section-title" id="kitas">KITAS (WORK & STAY PERMITS)</h2>
+            <div class="services-grid">
+                <div class="service-btn" onclick="showModal('freelance')">Freelance KITAS</div>
+                <div class="service-btn" onclick="showModal('working')">Working KITAS</div>
+                <div class="service-btn" onclick="showModal('investor')">Investor KITAS</div>
+                <div class="service-btn" onclick="showModal('dependent')">Dependent KITAS</div>
+                <div class="service-btn" onclick="showModal('retirement')">Retirement KITAS</div>
+                <div class="service-btn" onclick="showModal('spouse')">Spouse KITAS</div>
+                <div class="service-btn" onclick="showModal('remote')">Remote Worker</div>
+            </div>
+
+            <h2 class="section-title" id="kitap">KITAP (PERMANENT RESIDENCE)</h2>
+            <div class="services-grid">
+                <div class="service-btn" onclick="showModal('kitap-investor')">Investor KITAP</div>
+                <div class="service-btn" onclick="showModal('kitap-working')">Working KITAP</div>
+                <div class="service-btn" onclick="showModal('kitap-family')">Family KITAP</div>
+                <div class="service-btn" onclick="showModal('kitap-retirement')">Retirement KITAP</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for service details -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <a href="../index.html" class="back-btn">← Back to Home</a>
+
+    <script>
+        function showModal(service) {
+            const modal = document.getElementById('serviceModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const serviceData = {
+                c1: {
+                    title: 'C1 Tourism Visa',
+                    content: `
+                        <p>The perfect visa to stay up to 180 days if you want to spend time in Indonesia for tourism, visiting friends or family, and transit. Also as a participant at meetings, incentives, conventions, and exhibitions.</p>
+                        <h4>Features:</h4>
+                        <p>• Initial e-visa valid 60 days<br>
+                        • Can be extended twice, each time adding 60 days<br>
+                        • Total stay up to 180 days<br>
+                        • Single entry visa</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: 2,300,000 IDR<br>
+                            Extension: 1,700,000 IDR
+                        </div>
+                    `
+                },
+                c2: {
+                    title: 'C2 Business Visa',
+                    content: `
+                        <p>The ideal visa to stay up to 180 days if you want to carry out activities related to business, meetings, or shopping including but not limited to checking goods at the office, factory, or production site of goods.</p>
+                        <h4>Features:</h4>
+                        <p>• Business activities up to 180 days<br>
+                        • Can be extended twice<br>
+                        • Single entry visa<br>
+                        • Perfect for business meetings and shopping</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: 3,600,000 IDR<br>
+                            Extension: 1,700,000 IDR
+                        </div>
+                    `
+                },
+                c7: {
+                    title: 'C7 Professional Visa',
+                    content: `
+                        <p>Single entry visa designed for professionals like chefs, yoga instructors, bartenders, and photographers who are invited to take part in events throughout Indonesia.</p>
+                        <h4>Features:</h4>
+                        <p>• 30 days stay from arrival<br>
+                        • Not extendable<br>
+                        • For invited professionals<br>
+                        • Event participation visa</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: 5,000,000 IDR
+                        </div>
+                    `
+                },
+                c7ab: {
+                    title: 'C7 A&B Music Visa',
+                    content: `
+                        <p>Single entry visa designed for foreigners who want to show, display, or perform work related to music. Supporting foreigners carrying out musical performance activities.</p>
+                        <h4>Features:</h4>
+                        <p>• 30 days stay from arrival<br>
+                        • Not extendable<br>
+                        • Musical performance activities<br>
+                        • Show and display work related to music</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: 4,500,000 IDR
+                        </div>
+                    `
+                },
+                c22a: {
+                    title: 'C22A Academic Internship',
+                    content: `
+                        <p>Single entry visa crafted for individuals looking to engage in internship activities to fulfill the academic requirements of their overseas education.</p>
+                        <h4>Features:</h4>
+                        <p>• Academic requirement fulfillment<br>
+                        • Not extendable<br>
+                        • Choose 60 or 180 days<br>
+                        • Overseas education requirement</p>
+                        <div class="price-highlight">
+                            60 Days: 4,800,000 IDR<br>
+                            180 Days: 5,800,000 IDR
+                        </div>
+                    `
+                },
+                c22b: {
+                    title: 'C22B Company Internship',
+                    content: `
+                        <p>Single entry visa tailored for individuals eager to undertake internship activities aimed at developing skills and talent within a company, office, or workplace.</p>
+                        <h4>Features:</h4>
+                        <p>• Skills and talent development<br>
+                        • Company, office, or workplace setting<br>
+                        • Choose 60 or 180 days<br>
+                        • Not extendable</p>
+                        <div class="price-highlight">
+                            60 Days: 4,800,000 IDR<br>
+                            180 Days: 5,800,000 IDR
+                        </div>
+                    `
+                },
+                d1: {
+                    title: 'D1 Multiple Entry Visa',
+                    content: `
+                        <p>The ideal choice to attend as a participant at meetings, incentives, conventions, and exhibitions. Also for conducting activities related to tourism and visiting friends or family.</p>
+                        <h4>Features:</h4>
+                        <p>• 60 days per visit<br>
+                        • Two extensions possible (60 days each)<br>
+                        • Up to 180 days per single visit<br>
+                        • Multiple entry visa</p>
+                        <div class="price-highlight">
+                            1 Year: 5,000,000 IDR<br>
+                            2 Years: 7,000,000 IDR
+                        </div>
+                    `
+                },
+                d2: {
+                    title: 'D2 Business Multiple Entry',
+                    content: `
+                        <p>The perfect choice to carry out activities related to business, meetings, or shopping including but not limited to checking goods at the office, factory, or production site of goods.</p>
+                        <h4>Features:</h4>
+                        <p>• 60 days per visit<br>
+                        • Two extensions possible (60 days each)<br>
+                        • Business activities focus<br>
+                        • Multiple entry visa</p>
+                        <div class="price-highlight">
+                            1 Year: 6,000,000 IDR<br>
+                            2 Years: 8,000,000 IDR
+                        </div>
+                    `
+                },
+                d12: {
+                    title: 'D12 Investment Investigation',
+                    content: `
+                        <p>The perfect choice visa for investigating starting business in Indonesia, permitting activities such as site visits, field surveys and/or feasibility studies.</p>
+                        <h4>Features:</h4>
+                        <p>• Up to 180 days stay<br>
+                        • Can be extended once<br>
+                        • Business investigation activities<br>
+                        • Site visits and feasibility studies</p>
+                        <div class="price-highlight">
+                            1 Year: 7,500,000 IDR<br>
+                            2 Years: 10,000,000 IDR<br>
+                            Extension: 3,500,000 IDR
+                        </div>
+                    `
+                },
+                freelance: {
+                    title: 'Freelance KITAS (E23)',
+                    content: `
+                        <p>The Freelance KITAS is linked with the working permit (IMTA). This permit allows foreigners to live and work in Indonesia for up to 6 months without the need for a specific employer.</p>
+                        <h4>Features:</h4>
+                        <p>• Work without specific employer<br>
+                        • Up to 6 months validity<br>
+                        • Ideal for DJs, marketing managers<br>
+                        • Includes working permit (IMTA)</p>
+                        <div class="price-highlight">
+                            Offshore KITAS: 26,000,000 IDR<br>
+                            Onshore KITAS: 28,000,000 IDR
+                        </div>
+                    `
+                },
+                working: {
+                    title: 'Working KITAS (E23)',
+                    content: `
+                        <p>Working Kitas is a longer stay permit in Indonesia granted to foreign nationals who work in Indonesia for 1 Year under a company in Indonesia with one type of work.</p>
+                        <h4>Features:</h4>
+                        <p>• 1 year validity<br>
+                        • Multiple entry permit<br>
+                        • Work under Indonesian company<br>
+                        • One type of work specified</p>
+                        <div class="price-highlight">
+                            Offshore KITAS: 34,500,000 IDR<br>
+                            Onshore KITAS: 36,000,000 IDR<br>
+                            Extension KITAS: 31,000,000 IDR
+                        </div>
+                    `
+                },
+                investor: {
+                    title: 'Investor KITAS (E28A)',
+                    content: `
+                        <p>The Investor KITAS is available for foreign investors who have invested in Indonesia through a PT PMA (foreign investment company). It allows them to reside in the country for 2 years.</p>
+                        <h4>Features:</h4>
+                        <p>• 2 years validity<br>
+                        • For PT PMA investors<br>
+                        • Foreign investment company requirement<br>
+                        • Multiple entry permit</p>
+                        <div class="price-highlight">
+                            Offshore KITAS: 17,000,000 IDR<br>
+                            Onshore KITAS: 19,000,000 IDR<br>
+                            Extension KITAS: 18,000,000 IDR
+                        </div>
+                    `
+                },
+                dependent: {
+                    title: 'Dependent KITAS (E31B & E31E)',
+                    content: `
+                        <p>This visa is intended for dependent family members of KITAS and long-stay visa holders (including Golden Visa, Working, Investor and Kitap).</p>
+                        <h4>1 Year Options:</h4>
+                        <div class="price-highlight">
+                            Offshore KITAS: 11,000,000 IDR<br>
+                            Onshore KITAS: 13,500,000 IDR<br>
+                            Extension KITAS: 9,000,000 IDR
+                        </div>
+                        <h4>2 Years Options:</h4>
+                        <div class="price-highlight">
+                            Offshore KITAS: 15,000,000 IDR<br>
+                            Onshore KITAS: 18,000,000 IDR<br>
+                            Extension KITAS: 15,000,000 IDR
+                        </div>
+                    `
+                },
+                retirement: {
+                    title: 'Retirement KITAS (E33F)',
+                    content: `
+                        <p>The Retirement KITAS is available for foreign nationals aged 55 and want to enjoy retirement in this country. You are allowed to stay for 1 year and get multiple entry permit.</p>
+                        <h4>Features:</h4>
+                        <p>• Age 55 and above<br>
+                        • 1 year validity<br>
+                        • Multiple entry permit<br>
+                        • Retirement purpose</p>
+                        <div class="price-highlight">
+                            Offshore KITAS: 14,000,000 IDR<br>
+                            Onshore KITAS: 16,000,000 IDR<br>
+                            Extension KITAS: 10,000,000 IDR
+                        </div>
+                    `
+                },
+                spouse: {
+                    title: 'Spouse KITAS (E31A)',
+                    content: `
+                        <p>The Spouse KITAS is available for foreign citizens who are married to Indonesian citizens. You are allowed to stay for 1/2 years and get multiple entry permit.</p>
+                        <h4>1 Year Options:</h4>
+                        <div class="price-highlight">
+                            Offshore KITAS: 11,000,000 IDR<br>
+                            Onshore KITAS: 13,500,000 IDR<br>
+                            Extension KITAS: 9,000,000 IDR
+                        </div>
+                        <h4>2 Years Options:</h4>
+                        <div class="price-highlight">
+                            Offshore KITAS: 15,000,000 IDR<br>
+                            Onshore KITAS: 18,000,000 IDR<br>
+                            Extension KITAS: 15,000,000 IDR
+                        </div>
+                    `
+                },
+                remote: {
+                    title: 'Remote Worker KITAS (E33G)',
+                    content: `
+                        <p>The Remote Worker KITAS is for workers who work remotely (digital nomads). You are allowed to stay for 1 year and get multiple entry permit.</p>
+                        <h4>Features:</h4>
+                        <p>• Digital nomads<br>
+                        • Remote work permit<br>
+                        • 1 year validity<br>
+                        • Multiple entry permit</p>
+                        <div class="price-highlight">
+                            Offshore KITAS: 12,500,000 IDR<br>
+                            Onshore KITAS: 14,000,000 IDR<br>
+                            Extension KITAS: 10,000,000 IDR
+                        </div>
+                    `
+                },
+                'kitap-investor': {
+                    title: 'Investor KITAP',
+                    content: `
+                        <p>The KITAP is suitable for foreign investors who have held shares in an Indonesian company for a minimum of 3 years. It is valid for 5 years and can be extended indefinitely.</p>
+                        <h4>Requirements:</h4>
+                        <p>• Minimum 3 years holding shares<br>
+                        • Indonesian company investment<br>
+                        • 5 years validity<br>
+                        • Can be extended indefinitely</p>
+                        <div class="price-highlight">
+                            Contact for quote
+                        </div>
+                    `
+                },
+                'kitap-working': {
+                    title: 'Working KITAP',
+                    content: `
+                        <p>The KITAP is accessible to foreigners who have served as a Board of Directors (BOD) or Commissioner (BOC) in an Indonesian company under a Working KITAS for a minimum of 3 years.</p>
+                        <h4>Requirements:</h4>
+                        <p>• Minimum 3 years as BOD/BOC<br>
+                        • Under Working KITAS<br>
+                        • Indonesian company<br>
+                        • 5 years validity</p>
+                        <div class="price-highlight">
+                            Contact for quote
+                        </div>
+                    `
+                },
+                'kitap-family': {
+                    title: 'Family KITAP',
+                    content: `
+                        <p>The KITAP is ideal for foreigners married to Indonesian citizens or children from mixed-nationality marriages. The permit is valid for 5 years and can be extended indefinitely.</p>
+                        <h4>Requirements:</h4>
+                        <p>• Married to Indonesian citizen<br>
+                        • Children from mixed marriages<br>
+                        • 5 years validity<br>
+                        • Can be extended indefinitely</p>
+                        <div class="price-highlight">
+                            Contact for quote
+                        </div>
+                    `
+                },
+                'kitap-retirement': {
+                    title: 'Retirement KITAP',
+                    content: `
+                        <p>The KITAP is perfect for foreigners who have held a Retirement KITAS for a minimum of 4 years. It is issued with a validity of 5 years.</p>
+                        <h4>Requirements:</h4>
+                        <p>• Minimum 4 years Retirement KITAS<br>
+                        • Age 55 and above<br>
+                        • 5 years validity<br>
+                        • Retirement purpose</p>
+                        <div class="price-highlight">
+                            Contact for quote
+                        </div>
+                    `
+                }
+            };
+            
+            title.textContent = serviceData[service].title;
+            content.innerHTML = serviceData[service].content;
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

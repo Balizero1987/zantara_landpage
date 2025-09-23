@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Consultant - 3ALI ZERO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            background: #000;
+            margin: 0;
+            min-height: 100vh;
+            padding: 80px 0 40px;
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.98);
+            padding: 15px;
+            text-align: center;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-header a:hover {
+            opacity: 1;
+        }
+
+        .logo-nav {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .logo-nav .red {
+            color: #ff0000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+            padding: 0 10px;
+        }
+
+        .service-btn {
+            padding: 15px 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #000;
+            background: #eab308;
+            border: 1px solid #ca8a04;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-btn:hover {
+            background: #ca8a04;
+            border-color: #a16207;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .modal p {
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal h4 {
+            color: #fff;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .price-highlight {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #fff;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #eab308;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            border: 1px solid #ca8a04;
+            opacity: 0.9;
+        }
+
+        .back-btn:hover {
+            background: #ca8a04;
+            border-color: #a16207;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal-content { width: 95%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-header">
+        <div class="logo-nav">
+            <img src="../logo.png" alt="3ALI ZERO" style="height: 30px; width: auto;">
+        </div>
+        <div>
+            <a href="../index.html">HOME</a>
+            <a href="../VISAS/visas 19.53.25 16.40.41.html">VISAS</a>
+            <a href="../COMPANY&LICENSES/company 19.53.25.html">COMPANY</a>
+            <a href="../REAL ESTATE/realestate 19.53.25.html">REAL ESTATE</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container">
+            <h1>TAX CONSULTANT</h1>
+
+            <div class="services-grid">
+                <div class="service-btn" onclick="showModal('bpjs')">BPJS Insurance</div>
+                <div class="service-btn" onclick="showModal('spt')">SPT Annual</div>
+                <div class="service-btn" onclick="showModal('monthly')">Monthly Tax</div>
+                <div class="service-btn" onclick="showModal('npwp')">NPWP</div>
+                <div class="service-btn" onclick="showModal('lkpm')">LKPM Report</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for service details -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <a href="../index.html" class="back-btn">← Back to Home</a>
+
+    <script>
+        function showModal(service) {
+            const modal = document.getElementById('serviceModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const serviceData = {
+                bpjs: {
+                    title: 'BPJS Insurance Services',
+                    content: `
+                        <p>Complete BPJS (Badan Penyelenggara Jaminan Sosial) registration and management services for companies in Indonesia. Essential for compliance with Indonesian labor law.</p>
+                        <h4>Services Included:</h4>
+                        <p>• <strong>Health Insurance (BPJS Kesehatan):</strong> Medical coverage for employees<br>
+                        • <strong>Employment Insurance (BPJS Ketenagakerjaan):</strong> Work accident, pension, and death benefits<br>
+                        • Registration and enrollment process<br>
+                        • Monthly payment management<br>
+                        • Compliance monitoring</p>
+                        <h4>Requirements:</h4>
+                        <p>• Minimum 2 employees per company<br>
+                        • Valid company registration<br>
+                        • Employee identification documents<br>
+                        • Salary information</p>
+                        <div class="price-highlight">
+                            Health Insurance: 1,500,000 IDR / Company (min 2 people)<br>
+                            Employment Insurance: 1,500,000 IDR / Company (min 2 people)
+                        </div>
+                    `
+                },
+                spt: {
+                    title: 'SPT Annual Tax Report',
+                    content: `
+                        <p>Complete annual tax reporting services for both companies and individuals in Indonesia. Ensures compliance with Indonesian tax regulations and deadlines.</p>
+                        <h4>Service Types:</h4>
+                        <p>• <strong>Annual Tax Company & Personal (Operational):</strong> For active businesses with revenue<br>
+                        • <strong>Annual Tax Company & Personal (Zero):</strong> For inactive or dormant companies<br>
+                        • <strong>Annual Personal Tax:</strong> Individual tax returns only</p>
+                        <h4>What's Included:</h4>
+                        <p>• Tax calculation and preparation<br>
+                        • Government submission<br>
+                        • Tax optimization consultation<br>
+                        • Deadline compliance management<br>
+                        • Tax authority liaison</p>
+                        <div class="price-highlight">
+                            Annual Tax Company & Personal (Operational): Starting from 4,000,000 IDR<br>
+                            Annual Tax Company & Personal (Zero): Starting from 3,000,000 IDR<br>
+                            Annual Personal Tax: 2,000,000 IDR
+                        </div>
+                    `
+                },
+                monthly: {
+                    title: 'Monthly Tax Report',
+                    content: `
+                        <p>Regular monthly tax reporting and compliance services for Indonesian businesses. Includes VAT, income tax withholding, and other monthly tax obligations.</p>
+                        <h4>Monthly Services:</h4>
+                        <p>• VAT (Pajak Pertambahan Nilai) reporting<br>
+                        • Income tax withholding (PPh) calculations<br>
+                        • Monthly tax payment coordination<br>
+                        • Government submission and filing<br>
+                        • Tax compliance monitoring</p>
+                        <h4>Benefits:</h4>
+                        <p>• Avoid penalties and fines<br>
+                        • Maintain good standing with tax authorities<br>
+                        • Professional tax management<br>
+                        • Regular compliance updates</p>
+                        <div class="price-highlight">
+                            Monthly Tax Report: Starting from 1,500,000 IDR
+                        </div>
+                    `
+                },
+                npwp: {
+                    title: 'NPWP Registration',
+                    content: `
+                        <p>Tax identification number registration services for individuals and companies in Indonesia. Essential for all tax obligations and business activities.</p>
+                        <h4>NPWP Types:</h4>
+                        <p>• <strong>NPWP Personal + Coretax:</strong> Individual tax number with digital tax system access<br>
+                        • <strong>NPWPD (Company):</strong> Corporate tax identification number for businesses</p>
+                        <h4>Services Included:</h4>
+                        <p>• Document preparation and verification<br>
+                        • Government submission and processing<br>
+                        • Digital tax system registration<br>
+                        • Tax number certificate delivery<br>
+                        • Initial tax consultation</p>
+                        <h4>Requirements:</h4>
+                        <p>• Valid identification documents<br>
+                        • Address verification<br>
+                        • Company registration (for NPWPD)</p>
+                        <div class="price-highlight">
+                            NPWP Personal + Coretax: 1,000,000 IDR / Person<br>
+                            NPWPD Company: 2,500,000 IDR / Company
+                        </div>
+                    `
+                },
+                lkpm: {
+                    title: 'LKPM Report',
+                    content: `
+                        <p>Quarterly financial reporting services for Indonesian companies. LKPM (Laporan Keuangan Perusahaan Menengah) is required for medium-sized enterprises in Indonesia.</p>
+                        <h4>Report Features:</h4>
+                        <p>• Quarterly financial statements preparation<br>
+                        • Balance sheet and income statement<br>
+                        • Cash flow analysis<br>
+                        • Government compliance reporting<br>
+                        • Financial analysis and insights</p>
+                        <h4>Compliance Benefits:</h4>
+                        <p>• Meet regulatory requirements<br>
+                        • Maintain company good standing<br>
+                        • Financial transparency<br>
+                        • Investment readiness documentation</p>
+                        <h4>Reporting Schedule:</h4>
+                        <p>• Quarterly submissions (every 3 months)<br>
+                        • Professional preparation and review<br>
+                        • Timely government filing</p>
+                        <div class="price-highlight">
+                            LKPM Report: 1,000,000 IDR / Report (3 months)
+                        </div>
+                    `
+                }
+            };
+            
+            title.textContent = serviceData[service].title;
+            content.innerHTML = serviceData[service].content;
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

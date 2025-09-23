@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company & Licenses - 3ALI ZERO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            background: #000;
+            margin: 0;
+            min-height: 100vh;
+            padding: 80px 0 40px;
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.98);
+            padding: 15px;
+            text-align: center;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-header a:hover {
+            opacity: 1;
+        }
+
+        .logo-nav {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .logo-nav .red {
+            color: #ff0000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+            padding: 0 10px;
+        }
+
+        .service-btn {
+            padding: 15px 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #fff;
+            background: #16a34a;
+            border: 1px solid #15803d;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-btn:hover {
+            background: #15803d;
+            border-color: #166534;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .modal p {
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal h4 {
+            color: #fff;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .price-highlight {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #fff;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #16a34a;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            border: 1px solid #15803d;
+            opacity: 0.9;
+        }
+
+        .back-btn:hover {
+            background: #15803d;
+            border-color: #166534;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .modal-content { width: 95%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-header">
+        <div class="logo-nav">
+            <img src="../logo.png" alt="3ALI ZERO" style="height: 30px; width: auto;">
+        </div>
+        <div>
+            <a href="../index.html">HOME</a>
+            <a href="../VISAS/visas 19.53.25 16.40.41.html">VISAS</a>
+            <a href="../TAX/tax 19.53.25.html">TAX</a>
+            <a href="../REAL ESTATE/realestate 19.53.25.html">REAL ESTATE</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container">
+            <h1>COMPANY & LICENSES</h1>
+
+            <div class="services-grid">
+                <div class="service-btn" onclick="showModal('ptpma')">PT PMA Setup</div>
+                <div class="service-btn" onclick="showModal('alcohol')">Alcohol License</div>
+                <div class="service-btn" onclick="showModal('revision')">Company Revision</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for service details -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <a href="../index.html" class="back-btn">← Back to Home</a>
+
+    <script>
+        function showModal(service) {
+            const modal = document.getElementById('serviceModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const serviceData = {
+                ptpma: {
+                    title: 'PT PMA Setup',
+                    content: `
+                        <p>Complete service for setting up a company in Indonesia. Includes choosing the right business entity, meeting eligibility criteria, PT PMA registration, obtaining business permits and licenses.</p>
+                        <h4>What's Included:</h4>
+                        <p>• Choose the right business entity<br>
+                        • Meet eligibility criteria assessment<br>
+                        • PT PMA registration process<br>
+                        • Business permits and licenses<br>
+                        • Legal documentation<br>
+                        • Government liaison</p>
+                        <h4>Requirements:</h4>
+                        <p>• Foreign investment minimum capital<br>
+                        • Valid business plan<br>
+                        • Legal documents preparation<br>
+                        • Compliance with Indonesian investment law</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: Starting from 20,000,000 IDR
+                        </div>
+                    `
+                },
+                alcohol: {
+                    title: 'Alcohol License',
+                    content: `
+                        <p>Businesses involved in the production, distribution, or sale of alcoholic beverages in Indonesia must obtain an Alcohol License. Necessary for businesses that manufacture, distribute, or sell alcoholic beverages in Indonesia.</p>
+                        <h4>License Types:</h4>
+                        <p>• <strong>Class A:</strong> Production and manufacturing<br>
+                        • <strong>Class B:</strong> Distribution and wholesale<br>
+                        • <strong>Class C:</strong> Retail and restaurant sales<br>
+                        • <strong>NPPBKC License:</strong> Excise tax registration</p>
+                        <h4>What's Included:</h4>
+                        <p>• License application processing<br>
+                        • Government submissions<br>
+                        • Compliance verification<br>
+                        • Documentation preparation<br>
+                        • Follow-up and liaison</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: Starting from 15,000,000 IDR
+                        </div>
+                    `
+                },
+                revision: {
+                    title: 'Company Revision',
+                    content: `
+                        <p>Modify existing company structure and documents including articles of association, business activities, shareholding structure, and other corporate changes.</p>
+                        <h4>Revision Services:</h4>
+                        <p>• Articles of Association amendments<br>
+                        • Business activity changes (KBLI)<br>
+                        • Shareholding structure modifications<br>
+                        • Company name changes<br>
+                        • Address changes<br>
+                        • Capital increase/decrease</p>
+                        <h4>Process:</h4>
+                        <p>• Document analysis and preparation<br>
+                        • Ministry of Law submissions<br>
+                        • Notary deed amendments<br>
+                        • Government approvals<br>
+                        • Updated legal documents</p>
+                        <div class="price-highlight">
+                            PUBLIC PRICE: Starting from 7,000,000 IDR
+                        </div>
+                    `
+                }
+            };
+            
+            title.textContent = serviceData[service].title;
+            content.innerHTML = serviceData[service].content;
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

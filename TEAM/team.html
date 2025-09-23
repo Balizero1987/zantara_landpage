@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Bali Zero</title>
+    <meta name="description" content="Meet the dedicated team behind Bali Zero's success.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box;}
+        body {font-family:'Inter', sans-serif; background:#000; color:#fff; line-height:1.5;}
+
+        /* Header */
+        header {text-align:center; padding:80px 20px 40px;}
+        header img {width:150px; margin-bottom:20px;}
+        header h1 {font-size:2.5rem; font-weight:900; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;}
+        .tagline {font-size:1rem; font-weight:300; letter-spacing:2px; opacity:0.8; margin-bottom:20px; text-transform:uppercase;}
+        .tagline .infinity {color:#ffcc00; font-size:1.2rem;}
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateX(-5px);
+            color: #fff;
+        }
+
+        /* Sections */
+        section {max-width:1200px; margin:0 auto; padding:40px 20px;}
+
+        .department-section {
+            margin-bottom: 50px;
+        }
+
+        .department-header {
+            text-align: center;
+            margin: 0 0 30px 0;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 204, 102, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .department-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .department-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        /* Leadership styling */
+        .leadership-section {
+            margin-bottom: 50px;
+        }
+
+        .leadership-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .leadership-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .leadership-member .department-header {
+            margin: 0;
+            min-width: 250px;
+        }
+
+        /* Team Member Cards */
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 18px 12px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .member-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            background: linear-gradient(135deg, #0066ff 0%, #00cc66 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+            letter-spacing: 0.3px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .member-role {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            color: #ffcc00;
+            letter-spacing: 0.3px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+
+        /* CEO special styling */
+        .ceo-member {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(255, 204, 0, 0.15) 100%);
+            border: 2px solid rgba(255, 204, 0, 0.4);
+            min-width: 180px;
+            max-width: 200px;
+        }
+
+        .ceo-member:hover {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.25) 0%, rgba(255, 204, 0, 0.25) 100%);
+            border-color: rgba(255, 204, 0, 0.6);
+            box-shadow: 0 20px 40px rgba(255, 204, 0, 0.2);
+        }
+
+        .ceo-member .member-avatar {
+            width: 90px;
+            height: 90px;
+            border: 3px solid rgba(255, 204, 0, 0.5);
+        }
+
+        .ceo-member .member-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffcc00;
+        }
+
+        .ceo-member .member-role {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ffcc00;
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .department-members {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .leadership-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .leadership-member .department-header {
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .department-members {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .member-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .ceo-member .member-avatar {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-btn">← Back</a>
+
+    <header>
+        <img src="../logo.png" alt="Bali Zero Logo">
+        <h1>Our Team</h1>
+        <div class="tagline">Meet the people behind Bali Zero</div>
+    </header>
+
+    <section>
+        <!-- CEO & BOARD -->
+        <div class="department-section leadership-section">
+            <div class="leadership-row">
+                <div class="leadership-member">
+                    <div class="department-header">
+                        <div class="department-title">Chief Executive Officer</div>
+                    </div>
+                    <div class="team-member ceo-member" onclick="showEmail('zainal@balizero.com')">
+                        <div class="member-avatar">
+                            <img src="../FOTO COLLABORATORI/zainal.jpeg" alt="Zainal Abidin" onerror="this.style.display='none'; this.parentElement.innerHTML='ZA'">
+                        </div>
+                        <div class="member-name">ZAINAL ABIDIN</div>
+                        <div class="member-role">CEO</div>
+                    </div>
+                </div>
+                <div class="leadership-member">
+                    <div class="department-header">
+                        <div class="department-title">Board</div>
+                    </div>
+                    <div class="team-member" onclick="showEmail('ruslana@balizero.com')">
+                        <div class="member-avatar">
+                            <img src="../FOTO COLLABORATORI/ruslana 2.jpeg" alt="Ruslana" onerror="this.style.display='none'; this.parentElement.innerHTML='RU'">
+                        </div>
+                        <div class="member-name">RUSLANA</div>
+                        <div class="member-role">Board</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETUP TEAM -->
+        <div class="department-section">
+            <div class="department-header">
+                <div class="department-title">Setup Team</div>
+            </div>
+            <div class="department-members">
+                <div class="team-member" onclick="showEmail('amanda@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/amanda 19.53.40 2.jpeg" alt="Amanda" onerror="this.style.display='none'; this.parentElement.innerHTML='AM'">
+                    </div>
+                    <div class="member-name">AMANDA</div>
+                    <div class="member-role">Lead Executive</div>
+                </div>
+                <div class="team-member" onclick="showEmail('anton@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/anton.jpeg" alt="Anton" onerror="this.style.display='none'; this.parentElement.innerHTML='AN'">
+                    </div>
+                    <div class="member-name">ANTON</div>
+                    <div class="member-role">Lead Executive</div>
+                </div>
+                <div class="team-member" onclick="showEmail('vino@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/vino.jpeg" alt="Vino" onerror="this.style.display='none'; this.parentElement.innerHTML='VI'">
+                    </div>
+                    <div class="member-name">VINO</div>
+                    <div class="member-role">Lead Junior</div>
+                </div>
+                <div class="team-member" onclick="showEmail('krisna@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/krisna 2.jpeg" alt="Krisna" onerror="this.style.display='none'; this.parentElement.innerHTML='KR'">
+                    </div>
+                    <div class="member-name">KRISNA</div>
+                    <div class="member-role">Lead Executive</div>
+                </div>
+                <div class="team-member" onclick="showEmail('consulting@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/adit 2.jpeg" alt="Adit" onerror="this.style.display='none'; this.parentElement.innerHTML='AD'">
+                    </div>
+                    <div class="member-name">ADIT</div>
+                    <div class="member-role">Lead Supervisor</div>
+                </div>
+                <div class="team-member" onclick="showEmail('ari.firda@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/ari 19.53.40 2.jpeg" alt="Ari" onerror="this.style.display='none'; this.parentElement.innerHTML='AR'">
+                    </div>
+                    <div class="member-name">ARI</div>
+                    <div class="member-role">Lead Specialist</div>
+                </div>
+                <div class="team-member" onclick="showEmail('dea@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Dea" onerror="this.style.display='none'; this.parentElement.innerHTML='DE'">
+                    </div>
+                    <div class="member-name">DEA</div>
+                    <div class="member-role">Lead Executive</div>
+                </div>
+                <div class="team-member" onclick="showEmail('surya@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Surya" onerror="this.style.display='none'; this.parentElement.innerHTML='SU'">
+                    </div>
+                    <div class="member-name">SURYA</div>
+                    <div class="member-role">Lead Specialist</div>
+                </div>
+                <div class="team-member" onclick="showEmail('marta@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Marta" onerror="this.style.display='none'; this.parentElement.innerHTML='MA'">
+                    </div>
+                    <div class="member-name">MARTA</div>
+                    <div class="member-role">External Advisory</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAX DEPARTMENT -->
+        <div class="department-section">
+            <div class="department-header">
+                <div class="department-title">Tax Department</div>
+            </div>
+            <div class="department-members">
+                <div class="team-member" onclick="showEmail('tax@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Veronika" onerror="this.style.display='none'; this.parentElement.innerHTML='VE'">
+                    </div>
+                    <div class="member-name">VERONIKA</div>
+                    <div class="member-role">Tax Manager</div>
+                </div>
+                <div class="team-member" onclick="showEmail('angel.tax@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Angel" onerror="this.style.display='none'; this.parentElement.innerHTML='AN'">
+                    </div>
+                    <div class="member-name">ANGEL</div>
+                    <div class="member-role">Tax Expert</div>
+                </div>
+                <div class="team-member" onclick="showEmail('kadek@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Kadek" onerror="this.style.display='none'; this.parentElement.innerHTML='KA'">
+                    </div>
+                    <div class="member-name">KADEK</div>
+                    <div class="member-role">Tax Consultant</div>
+                </div>
+                <div class="team-member" onclick="showEmail('dewa.ayu.tax@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Dewa Ayu" onerror="this.style.display='none'; this.parentElement.innerHTML='DA'">
+                    </div>
+                    <div class="member-name">DEWA AYU</div>
+                    <div class="member-role">Tax Consultant</div>
+                </div>
+                <div class="team-member" onclick="showEmail('faisha.tax@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Faisha" onerror="this.style.display='none'; this.parentElement.innerHTML='FA'">
+                    </div>
+                    <div class="member-name">FAISHA</div>
+                    <div class="member-role">Tax Care</div>
+                </div>
+                <div class="team-member" onclick="showEmail('olena@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Olena" onerror="this.style.display='none'; this.parentElement.innerHTML='OL'">
+                    </div>
+                    <div class="member-name">OLENA</div>
+                    <div class="member-role">External Advisory</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECEPTION -->
+        <div class="department-section">
+            <div class="department-header">
+                <div class="department-title">Reception</div>
+            </div>
+            <div class="department-members">
+                <div class="team-member" onclick="showEmail('rina@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Rina" onerror="this.style.display='none'; this.parentElement.innerHTML='RI'">
+                    </div>
+                    <div class="member-name">RINA</div>
+                    <div class="member-role">Reception</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARKETING -->
+        <div class="department-section">
+            <div class="department-header">
+                <div class="department-title">Marketing</div>
+            </div>
+            <div class="department-members">
+                <div class="team-member" onclick="showEmail('nina@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="" alt="Nina" onerror="this.style.display='none'; this.parentElement.innerHTML='NI'">
+                    </div>
+                    <div class="member-name">NINA</div>
+                    <div class="member-role">Marketing Advisory - External</div>
+                </div>
+                <div class="team-member" onclick="showEmail('sahira@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/sahira 19.53.40.jpeg" alt="Sahira" onerror="this.style.display='none'; this.parentElement.innerHTML='SA'">
+                    </div>
+                    <div class="member-name">SAHIRA</div>
+                    <div class="member-role">Marketing Specialist</div>
+                </div>
+                <div class="team-member" onclick="showEmail('zero@balizero.com')">
+                    <div class="member-avatar">
+                        <img src="../FOTO COLLABORATORI/zero.jpeg" alt="Zero" onerror="this.style.display='none'; this.parentElement.innerHTML='ZE'">
+                    </div>
+                    <div class="member-name">ZERO</div>
+                    <div class="member-role">AI BRIDGE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Popup -->
+    <div class="email-popup" id="emailPopup" style="position:fixed; bottom:40px; left:50%; transform:translateX(-50%) translateY(100px); background:rgba(0,0,0,0.9); border:2px solid #00cc66; border-radius:15px; padding:20px 30px; color:#fff; font-size:1rem; opacity:0; pointer-events:none; transition:all 0.3s; backdrop-filter:blur(10px); box-shadow:0 10px 30px rgba(0,204,102,0.3); z-index:1000;"></div>
+
+    <script>
+        function showEmail(email) {
+            const popup = document.getElementById('emailPopup');
+            popup.innerHTML = `📧 ${email}`;
+            popup.style.opacity = '1';
+            popup.style.transform = 'translateX(-50%) translateY(0)';
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                setTimeout(() => {
+                    popup.innerHTML = '✅ Copied to clipboard!';
+                }, 1000);
+            });
+
+            setTimeout(() => {
+                popup.style.opacity = '0';
+                popup.style.transform = 'translateX(-50%) translateY(100px)';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
